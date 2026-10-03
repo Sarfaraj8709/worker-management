@@ -1,0 +1,295 @@
+@import "tailwindcss";
+
+/*
+  Design system: "Landa" style rebrand
+  - Page bg:   #010907 (near-black green)
+  - Text:      #F4F7F5 (off-white)
+  - Accent:    #69ECBF (mint)
+  - Headings:  Clash Display · Body: Inter · Mono: Geist Mono
+*/
+
+@theme {
+  /* indigo-* utilities remapped to the mint / emerald accent family */
+  --color-indigo-50: #ecfdf5;
+  --color-indigo-100: #d1fae5;
+  --color-indigo-200: #a7f3d0;
+  --color-indigo-300: #6ee7b7;
+  --color-indigo-400: #69ecbf;
+  --color-indigo-500: #10b981;
+  --color-indigo-600: #059669;
+  --color-indigo-700: #047857;
+  --color-indigo-800: #065f46;
+  --color-indigo-900: #064e3b;
+  --color-indigo-950: #022c22;
+
+  /* violet-* utilities remapped to the teal sister family */
+  --color-violet-50: #f0fdfa;
+  --color-violet-100: #ccfbf1;
+  --color-violet-200: #99f6e4;
+  --color-violet-300: #5eead4;
+  --color-violet-400: #2dd4bf;
+  --color-violet-500: #14b8a6;
+  --color-violet-600: #0d9488;
+  --color-violet-700: #0f766e;
+  --color-violet-800: #115e59;
+  --color-violet-900: #134e4a;
+  --color-violet-950: #042f2e;
+
+  /* slate-* utilities remapped to green-tinted neutrals (#010907 base) */
+  --color-slate-50: #f3faf7;
+  --color-slate-100: #e4f1eb;
+  --color-slate-200: #c4ddd3;
+  --color-slate-300: #98bfb1;
+  --color-slate-400: #6d9787;
+  --color-slate-500: #4e7566;
+  --color-slate-600: #3a5b4f;
+  --color-slate-700: #2b443a;
+  --color-slate-800: #1b2f27;
+  --color-slate-900: #0e2018;
+  --color-slate-850: #12261e;
+  --color-slate-950: #010907;
+
+  /* Typography */
+  --font-display: "Clash Display", "Inter", system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  :root {
+    --bg-color: 164 78% 2%; /* #010907 */
+    --text-color: 150 20% 96%; /* #F4F7F5 */
+    --card-bg: 160 62% 4%;
+    --card-fg: 150 20% 96%;
+    --muted: 158 16% 45%;
+    --accent-h: 158 76% 67%; /* #69ECBF */
+    --border: 158 38% 12%;
+    --surface-elevated: 162 55% 5%;
+  }
+
+  .dark-mode {
+    --bg-color: 164 78% 2%;
+    --text-color: 150 20% 96%;
+    --card-bg: 160 62% 4%;
+    --card-fg: 150 20% 96%;
+    --muted: 158 16% 45%;
+    --accent-h: 158 76% 67%;
+    --border: 158 38% 12%;
+    --surface-elevated: 162 55% 5%;
+  }
+
+  .light-mode {
+    --bg-color: 150 33% 98%;
+    --text-color: 168 45% 8%;
+    --card-bg: 0 0% 100%;
+    --card-fg: 168 45% 8%;
+    --muted: 160 12% 40%;
+    --accent-h: 160 84% 39%;
+    --border: 155 22% 86%;
+    --surface-elevated: 0 0% 100%;
+  }
+
+  body {
+    background-color: hsl(var(--bg-color));
+    color: hsl(var(--text-color));
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background-color 200ms linear, color 200ms linear;
+  }
+
+  /* Display face for headings across the whole app (Landa-style) */
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+.dashboard-card {
+  background: hsl(var(--card-bg));
+  border: 1px solid hsl(var(--border));
+  color: hsl(var(--card-fg));
+}
+
+.dashboard-card-elevated {
+  background: hsl(var(--surface-elevated));
+  border: 1px solid hsl(var(--border));
+}
+
+.dashboard-glow {
+  box-shadow: 0 0 24px rgba(105, 236, 191, 0.12);
+}
+
+.dashboard-input {
+  background: rgba(207, 252, 231, 0.03);
+  border: 1px solid rgba(207, 252, 231, 0.09);
+  color: #F4F7F5;
+}
+
+.dashboard-input::placeholder {
+  color: #4e7566;
+}
+
+.dashboard-button-primary {
+  background-color: #69ECBF;
+  color: #010907;
+  font-weight: 600;
+}
+
+.dashboard-button-primary:hover {
+  background-color: #8ff0d1;
+}
+
+.dashboard-sidebar {
+  background: #04120D;
+  border-right: 1px solid rgba(207, 252, 231, 0.08);
+}
+
+.dashboard-navbar {
+  background: rgba(1, 9, 7, 0.85);
+  border-bottom: 1px solid rgba(207, 252, 231, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.dashboard-card-hover:hover {
+  background: #061811;
+  border-color: rgba(207, 252, 231, 0.14);
+}
+
+.dashboard-skeleton {
+  background: #0A1F17;
+}
+
+
+/* Glow Utilities (mint family) */
+.neon-glow-indigo {
+  box-shadow: 0 0 20px 2px rgba(105, 236, 191, 0.25),
+              0 0 40px 10px rgba(105, 236, 191, 0.1);
+  border: 1px solid rgba(105, 236, 191, 0.4);
+}
+
+.neon-glow-cyan {
+  box-shadow: 0 0 20px 2px rgba(45, 212, 191, 0.25),
+              0 0 40px 10px rgba(45, 212, 191, 0.1);
+  border: 1px solid rgba(45, 212, 191, 0.4);
+}
+
+.neon-glow-emerald {
+  box-shadow: 0 0 20px 2px rgba(16, 185, 129, 0.25),
+              0 0 40px 10px rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.neon-glow-rose {
+  box-shadow: 0 0 20px 2px rgba(244, 63, 94, 0.25),
+              0 0 40px 10px rgba(244, 63, 94, 0.1);
+  border: 1px solid rgba(244, 63, 94, 0.4);
+}
+
+.neon-text-cyan {
+  color: #69ECBF; /* signature mint */
+  text-shadow: 0 0 8px rgba(105, 236, 191, 0.5),
+               0 0 20px rgba(105, 236, 191, 0.2);
+}
+
+.neon-text-indigo {
+  color: #69ecbf;
+  text-shadow: 0 0 8px rgba(105, 236, 191, 0.5),
+               0 0 20px rgba(105, 236, 191, 0.2);
+}
+
+.neon-text-rose {
+  color: #fb7185;
+  text-shadow: 0 0 8px rgba(251, 113, 133, 0.5),
+               0 0 20px rgba(251, 113, 133, 0.2);
+}
+
+/* Glassmorphism custom card — pale mint glass on hairline border */
+.glass-card {
+  background: rgba(207, 252, 231, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(207, 252, 231, 0.08);
+}
+
+/* Ambient page backgrounds */
+.neon-bg {
+  background-color: #010907;
+  background-image:
+    radial-gradient(circle at 15% 15%, rgba(105, 236, 191, 0.07), transparent 18%),
+    radial-gradient(circle at 85% 10%, rgba(45, 212, 191, 0.05), transparent 20%),
+    radial-gradient(circle at 50% 90%, rgba(16, 185, 129, 0.04), transparent 22%);
+}
+
+.gradient-bg {
+  background-color: #010907;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(105, 236, 191, 0.08), transparent 22%),
+    radial-gradient(circle at 80% 15%, rgba(45, 212, 191, 0.06), transparent 18%),
+    radial-gradient(circle at 50% 80%, rgba(16, 185, 129, 0.05), transparent 20%);
+}
+
+/* Smooth transition defaults */
+.btn-neon {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-neon:hover {
+  transform: translateY(-2px);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #010907;
+}
+::-webkit-scrollbar-thumb {
+  background: #1b2f27;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2b443a;
+}
+
+/* Slim scrollbar for the chat panel */
+.chat-scroll::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.chat-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.chat-scroll::-webkit-scrollbar-thumb {
+  background: #1B2F27;
+  border-radius: 3px;
+}
+.chat-scroll::-webkit-scrollbar-thumb:hover {
+  background: #2B443A;
+}
+
+/* Typing indicator dots */
+.typing-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 9999px;
+  background-color: #69ECBF;
+  animation: typing-bounce 1.2s infinite ease-in-out;
+}
+.typing-dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.typing-dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes typing-bounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
